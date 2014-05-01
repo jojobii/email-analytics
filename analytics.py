@@ -37,11 +37,15 @@ mail.select(config.MAIL_STRING) # connect to mailbox
 if config.NUM_DAYS is not None:
 	startdate = (dt.date.today() - dt.timedelta(config.NUM_DAYS)).strftime("%d-%b-%Y")
 	status, email_uids = mail.uid('search', None, '(SENTSINCE {date})'.format(date=startdate))
+
 else:
 	status, email_uids = mail.uid('search', None, "ALL") # search and return uids instead
 
 all_email_uids = ','.join(email_uids[0].split())
 
+if all_email_uids == '':
+	raise Exception("No emails found in folder %s starting from %s" % (config.MAIL_STRING, startdate))
+	
 status, data = mail.uid('fetch', all_email_uids, '(BODY.PEEK[HEADER])')
 if status != 'OK':
 	raise Exception("Error running imap search for spinvox messages: "
