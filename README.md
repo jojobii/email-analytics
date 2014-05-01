@@ -8,11 +8,11 @@ See the following link for examples of the graphical output:
 
 http://www.jaijuneja.com/blog/2014/01/what-can-learn-from-emails/
 
-Currently has only been tested using Gmail and Microsoft Exchange.
+Currently has only been tested using Gmail ~~and Microsoft Exchange~~.
 
 ## How to run
-- Open config.py and enter the IMAP settings for your email account
-- Open terminal, cd into the root directory and type ```python analytics.py```
+- Open terminal, cd into the root directory and type ```python analytics.py -h``` to view help
+- Example for gmail and received messages (inbox): ```python analytics.py username@gmail.com password -ef received [-options]```
 - Note that this requires Python 2.7 as it uses the Counter class in the collections module. It is NOT compatible with Python 3.x.
 
 ## To do
